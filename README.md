@@ -32,7 +32,7 @@ npm install
 
 Second, seed the SQLite database.
 
-```npm 
+``` 
 npm run seed
 ```
 
