@@ -14,6 +14,9 @@ module.exports = (sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: false,
 			validate: {
+				notNull: {
+					msg: 'a first name must be entered'
+				},
 				notEmpty: {
 				  	msg: 'firstName is required'
 				}
@@ -23,6 +26,9 @@ module.exports = (sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: false,
 			validate: {
+				notNull: {
+					msg: 'a last name must be entered'
+				},
 				notEmpty: {
 				  	msg: 'lastName is required'
 				}
@@ -32,9 +38,13 @@ module.exports = (sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: false,
 			unique: {
+				args: true,
 				msg: 'email already in use'
 			},
 			validate: {
+				notNull: {
+					msg: 'an email address must be entered'
+				},
 				notEmpty: {
 				  	msg: 'emailAddress is required'
 				},
@@ -47,11 +57,14 @@ module.exports = (sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: false,
 			validate: {
+				notNull: {
+					msg: 'a password must be entered'
+				},
 				notEmpty: {
 				  	msg: 'password is required'
 				}
 			}
-        },
+		},
 	}, { sequelize });
 	
 	User.associate = (models) => {

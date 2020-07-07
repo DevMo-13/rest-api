@@ -10,7 +10,7 @@ FSJS project 9 - REST API
 const express = require('express');
 const morgan = require('morgan');
 
-// const usersRoute = require('./routes/users')
+const usersRoute = require('./routes/users')
 // const coursesRoute = require('./routes/courses')
 
 // Variable to enable global error logging.
@@ -26,7 +26,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Set api routes for users and courses.
-// app.use('/api', usersRoute);
+app.use('/api', usersRoute);
 // app.use('/api', coursesRoute);
 
 // Set a friendly greeting for the root route.
@@ -55,10 +55,4 @@ app.use((err, req, res, next) => {
 	});
 });
 
-// Set the port.
-app.set('port', process.env.PORT || 5000);
-
-// Start listening on the port.
-const server = app.listen(app.get('port'), () => {
-  	console.log(`Express server is listening on port ${server.address().port}`);
-});
+module.exports = app;
