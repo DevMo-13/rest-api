@@ -3,7 +3,7 @@ const router = express.Router();
 const bcryptjs = require('bcryptjs');
 const { authenticateUser } = require('./middleware/authenticateUser');
 const asyncHandler = require('./middleware/asyncHandler');
-const User = require('../models').User;
+const { User } = require('../models');
 
 // GET the current authenticated user.
 router.get('/users', authenticateUser, (req, res) => {
@@ -13,10 +13,13 @@ router.get('/users', authenticateUser, (req, res) => {
 
 // POST new user to database.
 router.post('/users', asyncHandler(async (req, res) => {	
-	try {
-		const user = req.body;
+	const user = req.body;
 
+	if(user.password) {
 		user.password = bcryptjs.hashSync(user.password);
+	}
+	
+	try {
 		await User.create(user);
 		res.status(201).location('/').end();
 	} catch (error) {

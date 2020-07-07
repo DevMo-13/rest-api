@@ -14,6 +14,9 @@ module.exports = (sequelize) => {
 			type: Sequelize.STRING,
 			allowNull: false,
 			validate: {
+				notNull: {
+					msg: 'title cannot be null'
+				},
 				notEmpty: {
 				  	msg: 'title is required'
 				}
@@ -23,6 +26,9 @@ module.exports = (sequelize) => {
 			type: Sequelize.TEXT,
 			allowNull: false,
 			validate: {
+				notNull: {
+					msg: 'description cannot be null'
+				},
 				notEmpty: {
 				  	msg: 'description is required'
 				}
@@ -37,7 +43,12 @@ module.exports = (sequelize) => {
 	}, { sequelize });
 	
 	Course.associate = (models) => {
-		Course.belongsTo(models.User, { foreignKey: 'userId' });
+		Course.belongsTo(models.User, {
+			as: "user",
+			foreignKey: {
+			  name: 'userId',
+			  allowNull: false
+		}})
 	};
 
     return Course;

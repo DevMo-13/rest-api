@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			validate: {
 				notNull: {
-					msg: 'a first name must be entered'
+					msg: 'firstName cannot be null'
 				},
 				notEmpty: {
 				  	msg: 'firstName is required'
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			validate: {
 				notNull: {
-					msg: 'a last name must be entered'
+					msg: 'lastName cannot be null'
 				},
 				notEmpty: {
 				  	msg: 'lastName is required'
@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
 			},
 			validate: {
 				notNull: {
-					msg: 'an email address must be entered'
+					msg: 'emailAddress cannot be null'
 				},
 				notEmpty: {
 				  	msg: 'emailAddress is required'
@@ -58,7 +58,7 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			validate: {
 				notNull: {
-					msg: 'a password must be entered'
+					msg: 'password cannot be null'
 				},
 				notEmpty: {
 				  	msg: 'password is required'
@@ -68,7 +68,12 @@ module.exports = (sequelize) => {
 	}, { sequelize });
 	
 	User.associate = (models) => {
-		User.hasMany(models.Course, { foreignKey: 'userId' });
+		User.hasMany(models.Course, {
+			as: "courses",
+			foreignKey: {
+			  name: 'userId',
+			  allowNull: false
+		}})
 	};
 
     return User;
