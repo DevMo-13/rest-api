@@ -6,11 +6,16 @@ const asyncHandler = require('./middleware/asyncHandler');
 const { User } = require('../models');
 
 // GET the current authenticated user.
-router.get('/users', authenticateUser, (req, res) => {
-	const { password, ...user } = req.currentUser
-	  
+router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
+	const userId = req.currentUser.dataValues.id;
+	const user = await User.findByPk(userId, {
+		attributes: { 
+			exclude: ['password','createdAt', 'updatedAt'] 
+		},
+	});
+		  
 	res.status(200).json(user);
-});
+}));
 
 // POST new user to database.
 router.post('/users', asyncHandler(async (req, res, next) => {	

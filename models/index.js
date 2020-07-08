@@ -15,7 +15,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-// Test connection to the database
+// Test connection to the database.
 (async () => {
 	try {
 	  await sequelize.authenticate()
