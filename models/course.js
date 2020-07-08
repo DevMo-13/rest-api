@@ -15,10 +15,10 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			validate: {
 				notNull: {
-					msg: 'title cannot be null'
+					msg: 'Title cannot be null.'
 				},
 				notEmpty: {
-				  	msg: 'title is required'
+				  	msg: 'A title is required.'
 				}
 			}
 		},
@@ -27,10 +27,10 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			validate: {
 				notNull: {
-					msg: 'description cannot be null'
+					msg: 'Description cannot be null.'
 				},
 				notEmpty: {
-				  	msg: 'description is required'
+				  	msg: 'A description is required.'
 				}
 			}
 		},
@@ -46,9 +46,15 @@ module.exports = (sequelize) => {
 		Course.belongsTo(models.User, {
 			as: "user",
 			foreignKey: {
-			  name: 'userId',
-			  allowNull: false
-		}})
+				name: 'userId',
+				allowNull: false,
+				validate: {
+					notNull: {
+						msg: 'User Id cannot be null.'
+					}
+				}
+			}
+		})
 	};
 
     return Course;

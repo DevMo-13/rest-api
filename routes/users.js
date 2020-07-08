@@ -8,16 +8,17 @@ const { User } = require('../models');
 // GET the current authenticated user.
 router.get('/users', authenticateUser, (req, res) => {
 	const { password, ...user } = req.currentUser
-  	res.status(200).json(user);
+	  
+	res.status(200).json(user);
 });
 
 // POST new user to database.
-router.post('/users', asyncHandler(async (req, res) => {	
+router.post('/users', asyncHandler(async (req, res, next) => {	
 	const user = req.body;
 
 	if(user.password) {
 		user.password = bcryptjs.hashSync(user.password);
-	}
+	};
 	
 	try {
 		await User.create(user);
