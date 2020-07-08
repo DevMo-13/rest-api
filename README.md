@@ -27,4 +27,5 @@ npm start
 ```
 
 To test the Express server, browse to the URL [http://localhost:5000/](http://localhost:5000/).
+
 Feel free to use the `RESTAPI.postman_collection.json` file (a collection of Postman requests) to test and explore the REST API.
