@@ -1,8 +1,15 @@
-# Project 9 - REST API
+# REST API
  Treehouse FSJS Techdegree Project 9 - REST API
 
-In this project, I have created a REST API using Express. I use REST API design, Node.js, and Express to create API routes, along with the Sequelize ORM for data modeling, validation, and persistence. 
-The API provides a way for users to administer a school database containing information about courses: users can interact with the database by retrieving a list of courses, as well as adding, updating, and deleting courses in the database. This project also requires users to create an account and log-in to make changes to the database.
+In this project, I have created a REST API using Express. The API provides a way for users to administer a school database containing information about courses: users can interact with the database by retrieving a list of courses, as well as adding, updating, and deleting courses in the database. This project also requires users to create an account and log-in to make changes to the database.
+
+---
+
+Key achievements:
+- Used REST API design, Node.js, and Express to create API routes
+- Configured the Sequelize ORM for data modeling, validation, and persistence
+- Utilized bcryptjs to hash user passwords
+- Set up permissions that require users to be signed in to make changes to database
 
 ---
 
